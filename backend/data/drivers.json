@@ -1,6 +1,6 @@
 [
   {
-    "id": "DRV-C7C224",
+    "id": "DRV-824FEB",
     "name": "Carlos Reyes",
     "type": "biker",
     "zones": [
@@ -8,10 +8,11 @@
       "Midtown"
     ],
     "status": "available",
-    "current_orders": []
+    "current_orders": [],
+    "company": "QuickPedal Couriers"
   },
   {
-    "id": "DRV-9E3E10",
+    "id": "DRV-CFC7D8",
     "name": "Ana Flores",
     "type": "biker",
     "zones": [
@@ -19,21 +20,22 @@
       "Midtown"
     ],
     "status": "on_delivery",
-    "current_orders": []
+    "current_orders": [],
+    "company": "QuickPedal Couriers"
   },
   {
-    "id": "DRV-083953",
-    "name": "Marcus Webb",
+    "id": "DRV-6E9171",
+    "name": "Sofia Morales",
     "type": "biker",
     "zones": [
-      "Midtown",
-      "Chelsea"
+      "Uptown"
     ],
     "status": "available",
-    "current_orders": []
+    "current_orders": [],
+    "company": "QuickPedal Couriers"
   },
   {
-    "id": "DRV-79E5CB",
+    "id": "DRV-DD2C4B",
     "name": "Priya Nair",
     "type": "biker",
     "zones": [
@@ -41,10 +43,11 @@
       "East Village"
     ],
     "status": "available",
-    "current_orders": []
+    "current_orders": [],
+    "company": "Metro Express"
   },
   {
-    "id": "DRV-3A67E1",
+    "id": "DRV-E6186F",
     "name": "Devon Clarke",
     "type": "biker",
     "zones": [
@@ -52,10 +55,11 @@
       "East Village"
     ],
     "status": "on_delivery",
-    "current_orders": []
+    "current_orders": [],
+    "company": "Metro Express"
   },
   {
-    "id": "DRV-656E20",
+    "id": "DRV-831417",
     "name": "Kenji Tanaka",
     "type": "biker",
     "zones": [
@@ -63,20 +67,23 @@
       "Midtown"
     ],
     "status": "available",
-    "current_orders": []
+    "current_orders": [],
+    "company": "Metro Express"
   },
   {
-    "id": "DRV-6CC93C",
-    "name": "Sofia Morales",
+    "id": "DRV-0A3CF4",
+    "name": "Marcus Webb",
     "type": "biker",
     "zones": [
-      "Uptown"
+      "Midtown",
+      "Chelsea"
     ],
     "status": "available",
-    "current_orders": []
+    "current_orders": [],
+    "company": "Metro Express"
   },
   {
-    "id": "DRV-C98ACA",
+    "id": "DRV-705175",
     "name": "Liam O'Brien",
     "type": "biker",
     "zones": [
@@ -84,10 +91,11 @@
       "Chelsea"
     ],
     "status": "on_delivery",
-    "current_orders": []
+    "current_orders": [],
+    "company": "Metro Express"
   },
   {
-    "id": "DRV-78E7BC",
+    "id": "DRV-FB8976",
     "name": "Marcus Brown",
     "type": "driver",
     "zones": [
@@ -96,10 +104,11 @@
       "Chelsea"
     ],
     "status": "on_delivery",
-    "current_orders": []
+    "current_orders": [],
+    "company": "Downtown Direct"
   },
   {
-    "id": "DRV-ACAEF1",
+    "id": "DRV-F21003",
     "name": "Jasmine Wong",
     "type": "driver",
     "zones": [
@@ -107,10 +116,11 @@
       "East Village"
     ],
     "status": "called_out",
-    "current_orders": []
+    "current_orders": [],
+    "company": "Downtown Direct"
   },
   {
-    "id": "DRV-C0EE6E",
+    "id": "DRV-A60C58",
     "name": "Tyler Banks",
     "type": "driver",
     "zones": [
@@ -119,10 +129,11 @@
       "Midtown"
     ],
     "status": "available",
-    "current_orders": []
+    "current_orders": [],
+    "company": "Downtown Direct"
   },
   {
-    "id": "DRV-F05AA9",
+    "id": "DRV-8606B2",
     "name": "Amara Osei",
     "type": "driver",
     "zones": [
@@ -131,6 +142,7 @@
       "Chelsea"
     ],
     "status": "on_delivery",
-    "current_orders": []
+    "current_orders": [],
+    "company": "Downtown Direct"
   }
 ]
