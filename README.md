@@ -93,6 +93,19 @@ npm run dev
 | CS notification | Generates customer communication scripts | Exception type + severity + order details |
 | Shift summary | Creates end-of-shift briefing | Aggregates all metrics + open exceptions |
 
+## Changelog
+
+### v2 — Product Iteration (April 2026)
+Changes based on hands-on testing and operational experience:
+
+- **Smart driver reservation**: Agent warns when assigning a driver to a small order would leave no drivers for upcoming large/heavy orders. Prevents the common mistake of burning your only driver on a delivery a biker could handle.
+- **Batched CS notifications**: OOS items accumulate per order and send as one notification when picking is complete — unless it's a core item, which triggers an immediate alert. Customers get one call, not five.
+- **Pick progress visibility**: Delivery windows show items picked vs. total (20/61), and individual orders show progress (2/7). Ops managers can see at a glance whether a window will make it.
+- **Drivers grouped by company**: Reorganized from zone-based to company-based grouping, reflecting how staffing actually works when everyone ships from one warehouse.
+- **Expected vs. present staffing**: Replaced "X out sick" with "Expected: 12 | Present: 11 | Out: 1" for immediate clarity on staffing levels.
+- **Large/heavy order flagging**: Orders requiring a driver (20+ items or heavy goods) are flagged before dispatch so they don't get assigned to a biker.
+- **Shift summary redesign**: Replaced markdown wall with scannable card layout — critical issues at top, progress bars for delivery windows, numbered priorities for next shift.
+
 ## What's Next
 
 - [ ] Historical analytics: track exception patterns over days/weeks
