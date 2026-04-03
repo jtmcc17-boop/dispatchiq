@@ -1,0 +1,2278 @@
+[
+  {
+    "id": "ORD-F88BFD",
+    "customer_name": "Maria Garcia",
+    "items": [
+      {
+        "name": "Salmon Fillet",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Lemon Herb Sauce",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Mixed Greens",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Sparkling Water",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Brown Rice",
+        "quantity": 1,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "10:00-11:00",
+    "zone": "Uptown",
+    "status": "delivered",
+    "assigned_driver": "Carlos Reyes",
+    "timestamps": {
+      "received": "2026-04-02T18:15:43.201515",
+      "picking_started": "2026-04-02T18:25:43.201515",
+      "picked": "2026-04-02T18:35:43.201515",
+      "dispatched": "2026-04-02T18:45:43.201515",
+      "delivered": "2026-04-02T19:00:43.201515"
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-4F77C6",
+    "customer_name": "Jason Hernandez",
+    "items": [
+      {
+        "name": "Tofu Block",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Asparagus Bundle",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Sparkling Water",
+        "quantity": 1,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "10:00-11:00",
+    "zone": "Downtown",
+    "status": "delivered",
+    "assigned_driver": "Tyler Banks",
+    "timestamps": {
+      "received": "2026-04-02T18:15:43.201515",
+      "picking_started": "2026-04-02T18:25:43.201515",
+      "picked": "2026-04-02T18:35:43.201515",
+      "dispatched": "2026-04-02T18:45:43.201515",
+      "delivered": "2026-04-02T19:00:43.201515"
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-6684CD",
+    "customer_name": "Donald Hill",
+    "items": [
+      {
+        "name": "Ribeye Steak",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Roasted Vegetables",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Sweet Potato",
+        "quantity": 2,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "10:00-11:00",
+    "zone": "Midtown",
+    "status": "delivered",
+    "assigned_driver": "Carlos Reyes",
+    "timestamps": {
+      "received": "2026-04-02T18:15:43.201515",
+      "picking_started": "2026-04-02T18:25:43.201515",
+      "picked": "2026-04-02T18:35:43.201515",
+      "dispatched": "2026-04-02T18:45:43.201515",
+      "delivered": "2026-04-02T19:00:43.201515"
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-DFF2C7",
+    "customer_name": "David Nelson",
+    "items": [
+      {
+        "name": "Salmon Fillet",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Roasted Vegetables",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Dinner Rolls",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Lemon Herb Sauce",
+        "quantity": 1,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "10:00-11:00",
+    "zone": "Downtown",
+    "status": "delivered",
+    "assigned_driver": "Tyler Banks",
+    "timestamps": {
+      "received": "2026-04-02T18:15:43.201515",
+      "picking_started": "2026-04-02T18:25:43.201515",
+      "picked": "2026-04-02T18:35:43.201515",
+      "dispatched": "2026-04-02T18:45:43.201515",
+      "delivered": "2026-04-02T19:00:43.201515"
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-695AD2",
+    "customer_name": "Amanda Nelson",
+    "items": [
+      {
+        "name": "Salmon Fillet",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Lemon Herb Sauce",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Asparagus Bundle",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Garlic Butter",
+        "quantity": 2,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "10:00-11:00",
+    "zone": "Midtown",
+    "status": "delivered",
+    "assigned_driver": "Marcus Brown",
+    "timestamps": {
+      "received": "2026-04-02T18:15:43.201515",
+      "picking_started": "2026-04-02T18:25:43.201515",
+      "picked": "2026-04-02T18:35:43.201515",
+      "dispatched": "2026-04-02T18:45:43.201515",
+      "delivered": "2026-04-02T19:00:43.201515"
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-F830A9",
+    "customer_name": "Charles Williams",
+    "items": [
+      {
+        "name": "Chicken Breast",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Mixed Greens",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Brown Rice",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Asparagus Bundle",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Sweet Potato",
+        "quantity": 1,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "10:00-11:00",
+    "zone": "Downtown",
+    "status": "dispatched",
+    "assigned_driver": "Tyler Banks",
+    "timestamps": {
+      "received": "2026-04-02T18:15:43.201515",
+      "picking_started": "2026-04-02T18:25:43.201515",
+      "picked": "2026-04-02T18:35:43.201515",
+      "dispatched": "2026-04-02T18:45:43.201515",
+      "delivered": "2026-04-02T19:00:43.201515"
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-2FEE67",
+    "customer_name": "Melissa Mitchell",
+    "items": [
+      {
+        "name": "Pork Tenderloin",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Garlic Butter",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Mixed Greens",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Asparagus Bundle",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Sweet Potato",
+        "quantity": 1,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "10:00-11:00",
+    "zone": "Midtown",
+    "status": "delivered",
+    "assigned_driver": "Marcus Webb",
+    "timestamps": {
+      "received": "2026-04-02T18:15:43.201515",
+      "picking_started": "2026-04-02T18:25:43.201515",
+      "picked": "2026-04-02T18:35:43.201515",
+      "dispatched": "2026-04-02T18:45:43.201515",
+      "delivered": "2026-04-02T19:00:43.201515"
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-8207C1",
+    "customer_name": "Emily Martinez",
+    "items": [
+      {
+        "name": "Pork Tenderloin",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Garlic Butter",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Mixed Greens",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Brown Rice",
+        "quantity": 1,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "10:00-11:00",
+    "zone": "East Village",
+    "status": "delivered",
+    "assigned_driver": "Amara Osei",
+    "timestamps": {
+      "received": "2026-04-02T18:15:43.201515",
+      "picking_started": "2026-04-02T18:25:43.201515",
+      "picked": "2026-04-02T18:35:43.201515",
+      "dispatched": "2026-04-02T18:45:43.201515",
+      "delivered": "2026-04-02T19:00:43.201515"
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-D69198",
+    "customer_name": "Matthew Ramirez",
+    "items": [
+      {
+        "name": "Tofu Block",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Asparagus Bundle",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Dinner Rolls",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Lemon Herb Sauce",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Quinoa Mix",
+        "quantity": 1,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "10:00-11:00",
+    "zone": "East Village",
+    "status": "delivered",
+    "assigned_driver": "Priya Nair",
+    "timestamps": {
+      "received": "2026-04-02T18:15:43.201515",
+      "picking_started": "2026-04-02T18:25:43.201515",
+      "picked": "2026-04-02T18:35:43.201515",
+      "dispatched": "2026-04-02T18:45:43.201515",
+      "delivered": "2026-04-02T19:00:43.201515"
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-D31AEF",
+    "customer_name": "Ashley White",
+    "items": [
+      {
+        "name": "Pork Tenderloin",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Dinner Rolls",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Roasted Vegetables",
+        "quantity": 1,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "10:00-11:00",
+    "zone": "Chelsea",
+    "status": "dispatched",
+    "assigned_driver": "Marcus Brown",
+    "timestamps": {
+      "received": "2026-04-02T18:15:43.201515",
+      "picking_started": "2026-04-02T18:25:43.201515",
+      "picked": "2026-04-02T18:35:43.201515",
+      "dispatched": "2026-04-02T18:45:43.201515",
+      "delivered": "2026-04-02T19:00:43.201515"
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-626A92",
+    "customer_name": "Melissa Torres",
+    "items": [
+      {
+        "name": "Salmon Fillet",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Garlic Butter",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Asparagus Bundle",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Quinoa Mix",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Roasted Vegetables",
+        "quantity": 1,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "10:00-11:00",
+    "zone": "Downtown",
+    "status": "delivered",
+    "assigned_driver": "Marcus Brown",
+    "timestamps": {
+      "received": "2026-04-02T18:15:43.201515",
+      "picking_started": "2026-04-02T18:25:43.201515",
+      "picked": "2026-04-02T18:35:43.201515",
+      "dispatched": "2026-04-02T18:45:43.201515",
+      "delivered": "2026-04-02T19:00:43.201515"
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-59D936",
+    "customer_name": "Sharon Hill",
+    "items": [
+      {
+        "name": "Pork Tenderloin",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Brown Rice",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Asparagus Bundle",
+        "quantity": 2,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "10:00-11:00",
+    "zone": "Uptown",
+    "status": "delivered",
+    "assigned_driver": "Ana Flores",
+    "timestamps": {
+      "received": "2026-04-02T18:15:43.201515",
+      "picking_started": "2026-04-02T18:25:43.201515",
+      "picked": "2026-04-02T18:35:43.201515",
+      "dispatched": "2026-04-02T18:45:43.201515",
+      "delivered": "2026-04-02T19:00:43.201515"
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-944172",
+    "customer_name": "Michael Perez",
+    "items": [
+      {
+        "name": "Ribeye Steak",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Red Wine (375ml)",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Garlic Butter",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Asparagus Bundle",
+        "quantity": 1,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "11:00-12:00",
+    "zone": "Midtown",
+    "status": "picking",
+    "assigned_driver": "Carlos Reyes",
+    "timestamps": {
+      "received": "2026-04-02T19:05:43.201515",
+      "picking_started": "2026-04-02T19:15:43.201515",
+      "picked": null,
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-28AE4A",
+    "customer_name": "Charles Jones",
+    "items": [
+      {
+        "name": "Pork Tenderloin",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Sparkling Water",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Mixed Greens",
+        "quantity": 1,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "11:00-12:00",
+    "zone": "Downtown",
+    "status": "picking",
+    "assigned_driver": "Marcus Brown",
+    "timestamps": {
+      "received": "2026-04-02T19:05:43.201515",
+      "picking_started": "2026-04-02T19:15:43.201515",
+      "picked": null,
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-91DEFA",
+    "customer_name": "Thomas Miller",
+    "items": [
+      {
+        "name": "Salmon Fillet",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Mixed Greens",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Lemon Herb Sauce",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Asparagus Bundle",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Red Wine (375ml)",
+        "quantity": 2,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "11:00-12:00",
+    "zone": "Chelsea",
+    "status": "received",
+    "assigned_driver": "Marcus Webb",
+    "timestamps": {
+      "received": "2026-04-02T19:05:43.201515",
+      "picking_started": null,
+      "picked": null,
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-17DCD5",
+    "customer_name": "Robert Thomas",
+    "items": [
+      {
+        "name": "Ribeye Steak",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Sweet Potato",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Asparagus Bundle",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Quinoa Mix",
+        "quantity": 2,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "11:00-12:00",
+    "zone": "East Village",
+    "status": "received",
+    "assigned_driver": "Devon Clarke",
+    "timestamps": {
+      "received": "2026-04-02T19:05:43.201515",
+      "picking_started": null,
+      "picked": null,
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-762619",
+    "customer_name": "Steven Scott",
+    "items": [
+      {
+        "name": "Pork Tenderloin",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Brown Rice",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Sweet Potato",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Red Wine (375ml)",
+        "quantity": 1,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "11:00-12:00",
+    "zone": "Midtown",
+    "status": "picking",
+    "assigned_driver": "Carlos Reyes",
+    "timestamps": {
+      "received": "2026-04-02T19:05:43.201515",
+      "picking_started": "2026-04-02T19:15:43.201515",
+      "picked": null,
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-49825D",
+    "customer_name": "Andrew Wilson",
+    "items": [
+      {
+        "name": "Pork Tenderloin",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Roasted Vegetables",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Mixed Greens",
+        "quantity": 2,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "11:00-12:00",
+    "zone": "Uptown",
+    "status": "received",
+    "assigned_driver": "Tyler Banks",
+    "timestamps": {
+      "received": "2026-04-02T19:05:43.201515",
+      "picking_started": null,
+      "picked": null,
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-78070E",
+    "customer_name": "Ashley Gonzalez",
+    "items": [
+      {
+        "name": "Chicken Breast",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Quinoa Mix",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Sweet Potato",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Lemon Herb Sauce",
+        "quantity": 2,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "11:00-12:00",
+    "zone": "Uptown",
+    "status": "received",
+    "assigned_driver": "Sofia Morales",
+    "timestamps": {
+      "received": "2026-04-02T19:05:43.201515",
+      "picking_started": null,
+      "picked": null,
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-91C877",
+    "customer_name": "Kenneth Garcia",
+    "items": [
+      {
+        "name": "Salmon Fillet",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Dinner Rolls",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Quinoa Mix",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Garlic Butter",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Sparkling Water",
+        "quantity": 1,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "11:00-12:00",
+    "zone": "Midtown",
+    "status": "picked",
+    "assigned_driver": "Tyler Banks",
+    "timestamps": {
+      "received": "2026-04-02T19:05:43.201515",
+      "picking_started": "2026-04-02T19:15:43.201515",
+      "picked": "2026-04-02T19:35:43.201515",
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-E144D1",
+    "customer_name": "Timothy Nguyen",
+    "items": [
+      {
+        "name": "Salmon Fillet",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Roasted Vegetables",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Mixed Greens",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Sweet Potato",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Red Wine (375ml)",
+        "quantity": 2,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "11:00-12:00",
+    "zone": "Midtown",
+    "status": "picked",
+    "assigned_driver": "Liam O'Brien",
+    "timestamps": {
+      "received": "2026-04-02T19:05:43.201515",
+      "picking_started": "2026-04-02T19:15:43.201515",
+      "picked": "2026-04-02T19:35:43.201515",
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-101BF3",
+    "customer_name": "Timothy Adams",
+    "items": [
+      {
+        "name": "Ribeye Steak",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Mixed Greens",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Garlic Butter",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Red Wine (375ml)",
+        "quantity": 1,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "11:00-12:00",
+    "zone": "Downtown",
+    "status": "picked",
+    "assigned_driver": "Tyler Banks",
+    "timestamps": {
+      "received": "2026-04-02T19:05:43.201515",
+      "picking_started": "2026-04-02T19:15:43.201515",
+      "picked": "2026-04-02T19:35:43.201515",
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-F2BFB9",
+    "customer_name": "Joshua Wilson",
+    "items": [
+      {
+        "name": "Ribeye Steak",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Quinoa Mix",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Asparagus Bundle",
+        "quantity": 1,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "11:00-12:00",
+    "zone": "East Village",
+    "status": "picked",
+    "assigned_driver": "Kenji Tanaka",
+    "timestamps": {
+      "received": "2026-04-02T19:05:43.201515",
+      "picking_started": "2026-04-02T19:15:43.201515",
+      "picked": "2026-04-02T19:35:43.201515",
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-E1DA84",
+    "customer_name": "Steven Wright",
+    "items": [
+      {
+        "name": "Ribeye Steak",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Mixed Greens",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Garlic Butter",
+        "quantity": 1,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "11:00-12:00",
+    "zone": "Midtown",
+    "status": "picked",
+    "assigned_driver": "Marcus Brown",
+    "timestamps": {
+      "received": "2026-04-02T19:05:43.201515",
+      "picking_started": "2026-04-02T19:15:43.201515",
+      "picked": "2026-04-02T19:35:43.201515",
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-F70A3B",
+    "customer_name": "Robert Mitchell",
+    "items": [
+      {
+        "name": "Pork Tenderloin",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Dinner Rolls",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Quinoa Mix",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Red Wine (375ml)",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Lemon Herb Sauce",
+        "quantity": 1,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "11:00-12:00",
+    "zone": "Chelsea",
+    "status": "picked",
+    "assigned_driver": "Marcus Brown",
+    "timestamps": {
+      "received": "2026-04-02T19:05:43.201515",
+      "picking_started": "2026-04-02T19:15:43.201515",
+      "picked": "2026-04-02T19:35:43.201515",
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-D69682",
+    "customer_name": "Daniel Brown",
+    "items": [
+      {
+        "name": "Ribeye Steak",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Sparkling Water",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Mixed Greens",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Garlic Butter",
+        "quantity": 2,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "11:00-12:00",
+    "zone": "Midtown",
+    "status": "dispatched",
+    "assigned_driver": "Carlos Reyes",
+    "timestamps": {
+      "received": "2026-04-02T19:05:43.201515",
+      "picking_started": "2026-04-02T19:15:43.201515",
+      "picked": "2026-04-02T19:35:43.201515",
+      "dispatched": "2026-04-02T19:55:43.201515",
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-913560",
+    "customer_name": "Richard Mitchell",
+    "items": [
+      {
+        "name": "Ribeye Steak",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Quinoa Mix",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Garlic Butter",
+        "quantity": 2,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "11:00-12:00",
+    "zone": "East Village",
+    "status": "dispatched",
+    "assigned_driver": "Amara Osei",
+    "timestamps": {
+      "received": "2026-04-02T19:05:43.201515",
+      "picking_started": "2026-04-02T19:15:43.201515",
+      "picked": "2026-04-02T19:35:43.201515",
+      "dispatched": "2026-04-02T19:55:43.201515",
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-A17339",
+    "customer_name": "William Williams",
+    "items": [
+      {
+        "name": "Tofu Block",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Quinoa Mix",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Roasted Vegetables",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Sparkling Water",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Brown Rice",
+        "quantity": 2,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "11:00-12:00",
+    "zone": "Downtown",
+    "status": "dispatched",
+    "assigned_driver": "Tyler Banks",
+    "timestamps": {
+      "received": "2026-04-02T19:05:43.201515",
+      "picking_started": "2026-04-02T19:15:43.201515",
+      "picked": "2026-04-02T19:35:43.201515",
+      "dispatched": "2026-04-02T19:55:43.201515",
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-E0A084",
+    "customer_name": "Melissa Hernandez",
+    "items": [
+      {
+        "name": "Salmon Fillet",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Mixed Greens",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Red Wine (375ml)",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Roasted Vegetables",
+        "quantity": 1,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "11:00-12:00",
+    "zone": "Chelsea",
+    "status": "dispatched",
+    "assigned_driver": "Priya Nair",
+    "timestamps": {
+      "received": "2026-04-02T19:05:43.201515",
+      "picking_started": "2026-04-02T19:15:43.201515",
+      "picked": "2026-04-02T19:35:43.201515",
+      "dispatched": "2026-04-02T19:55:43.201515",
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-1A9111",
+    "customer_name": "Richard Hall",
+    "items": [
+      {
+        "name": "Salmon Fillet",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Garlic Butter",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Sweet Potato",
+        "quantity": 2,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "11:00-12:00",
+    "zone": "East Village",
+    "status": "delivered",
+    "assigned_driver": "Priya Nair",
+    "timestamps": {
+      "received": "2026-04-02T19:05:43.201515",
+      "picking_started": "2026-04-02T19:15:43.201515",
+      "picked": "2026-04-02T19:35:43.201515",
+      "dispatched": "2026-04-02T19:55:43.201515",
+      "delivered": "2026-04-02T20:10:43.201515"
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-B63CCC",
+    "customer_name": "Charles Johnson",
+    "items": [
+      {
+        "name": "Salmon Fillet",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Mixed Greens",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Red Wine (375ml)",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Asparagus Bundle",
+        "quantity": 1,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "11:00-12:00",
+    "zone": "East Village",
+    "status": "delivered",
+    "assigned_driver": "Devon Clarke",
+    "timestamps": {
+      "received": "2026-04-02T19:05:43.201515",
+      "picking_started": "2026-04-02T19:15:43.201515",
+      "picked": "2026-04-02T19:35:43.201515",
+      "dispatched": "2026-04-02T19:55:43.201515",
+      "delivered": "2026-04-02T20:10:43.201515"
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-0818EE",
+    "customer_name": "Emily Taylor",
+    "items": [
+      {
+        "name": "Ribeye Steak",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Roasted Vegetables",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Lemon Herb Sauce",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Garlic Butter",
+        "quantity": 1,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "11:00-12:00",
+    "zone": "East Village",
+    "status": "delivered",
+    "assigned_driver": "Devon Clarke",
+    "timestamps": {
+      "received": "2026-04-02T19:05:43.201515",
+      "picking_started": "2026-04-02T19:15:43.201515",
+      "picked": "2026-04-02T19:35:43.201515",
+      "dispatched": "2026-04-02T19:55:43.201515",
+      "delivered": "2026-04-02T20:10:43.201515"
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-CORE01",
+    "customer_name": "Rachel Kim",
+    "items": [
+      {
+        "name": "Pork Tenderloin",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Quinoa Mix",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Roasted Vegetables",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Sweet Potato",
+        "quantity": 2,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "11:00-12:00",
+    "zone": "Midtown",
+    "status": "picking",
+    "assigned_driver": "Liam O'Brien",
+    "timestamps": {
+      "received": "2026-04-02T19:10:43.201515",
+      "picking_started": "2026-04-02T19:20:43.201515",
+      "picked": null,
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [
+      "Pork Tenderloin"
+    ],
+    "notes": "Picker flagged core item missing from cold storage",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-MINOR1",
+    "customer_name": "David Chen",
+    "items": [
+      {
+        "name": "Pork Tenderloin",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Sweet Potato",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Sparkling Water",
+        "quantity": 2,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "11:00-12:00",
+    "zone": "Chelsea",
+    "status": "picked",
+    "assigned_driver": "Amara Osei",
+    "timestamps": {
+      "received": "2026-04-02T18:55:43.201515",
+      "picking_started": "2026-04-02T19:05:43.201515",
+      "picked": "2026-04-02T19:25:43.201515",
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [
+      "Sweet Potato"
+    ],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-MINOR2",
+    "customer_name": "Sofia Guti\u00e9rrez",
+    "items": [
+      {
+        "name": "Tofu Block",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Dinner Rolls",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Red Wine (375ml)",
+        "quantity": 2,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "12:00-13:00",
+    "zone": "East Village",
+    "status": "picking",
+    "assigned_driver": "Priya Nair",
+    "timestamps": {
+      "received": "2026-04-02T19:35:43.201515",
+      "picking_started": "2026-04-02T19:45:43.201515",
+      "picked": null,
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [
+      "Red Wine (375ml)"
+    ],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-731A61",
+    "customer_name": "Sandra Hall",
+    "items": [
+      {
+        "name": "Pork Tenderloin",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Red Wine (375ml)",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Roasted Vegetables",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Lemon Herb Sauce",
+        "quantity": 2,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "12:00-13:00",
+    "zone": "Chelsea",
+    "status": "received",
+    "assigned_driver": "Devon Clarke",
+    "timestamps": {
+      "received": "2026-04-02T19:40:43.201515",
+      "picking_started": null,
+      "picked": null,
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-F4EA2D",
+    "customer_name": "Sandra Scott",
+    "items": [
+      {
+        "name": "Chicken Breast",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Sweet Potato",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Red Wine (375ml)",
+        "quantity": 2,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "12:00-13:00",
+    "zone": "Downtown",
+    "status": "received",
+    "assigned_driver": "Marcus Brown",
+    "timestamps": {
+      "received": "2026-04-02T19:40:43.201515",
+      "picking_started": null,
+      "picked": null,
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-FF6B3E",
+    "customer_name": "Steven Lewis",
+    "items": [
+      {
+        "name": "Ribeye Steak",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Sweet Potato",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Sparkling Water",
+        "quantity": 2,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "12:00-13:00",
+    "zone": "Chelsea",
+    "status": "received",
+    "assigned_driver": "Amara Osei",
+    "timestamps": {
+      "received": "2026-04-02T19:40:43.201515",
+      "picking_started": null,
+      "picked": null,
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-5A8EB1",
+    "customer_name": "Anna Martin",
+    "items": [
+      {
+        "name": "Pork Tenderloin",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Brown Rice",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Roasted Vegetables",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Lemon Herb Sauce",
+        "quantity": 1,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "12:00-13:00",
+    "zone": "Midtown",
+    "status": "received",
+    "assigned_driver": "Ana Flores",
+    "timestamps": {
+      "received": "2026-04-02T19:40:43.201515",
+      "picking_started": null,
+      "picked": null,
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-87A2C2",
+    "customer_name": "Carol Clark",
+    "items": [
+      {
+        "name": "Chicken Breast",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Quinoa Mix",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Mixed Greens",
+        "quantity": 1,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "12:00-13:00",
+    "zone": "Midtown",
+    "status": "received",
+    "assigned_driver": "Marcus Brown",
+    "timestamps": {
+      "received": "2026-04-02T19:40:43.201515",
+      "picking_started": null,
+      "picked": null,
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-FEBFB8",
+    "customer_name": "Charles Lopez",
+    "items": [
+      {
+        "name": "Chicken Breast",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Sweet Potato",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Asparagus Bundle",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Red Wine (375ml)",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Mixed Greens",
+        "quantity": 2,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "12:00-13:00",
+    "zone": "Downtown",
+    "status": "picking",
+    "assigned_driver": "Amara Osei",
+    "timestamps": {
+      "received": "2026-04-02T19:40:43.201515",
+      "picking_started": "2026-04-02T19:50:43.201515",
+      "picked": null,
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-7EBDD8",
+    "customer_name": "William Robinson",
+    "items": [
+      {
+        "name": "Tofu Block",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Dinner Rolls",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Mixed Greens",
+        "quantity": 2,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "12:00-13:00",
+    "zone": "Downtown",
+    "status": "picking",
+    "assigned_driver": "Amara Osei",
+    "timestamps": {
+      "received": "2026-04-02T19:40:43.201515",
+      "picking_started": "2026-04-02T19:50:43.201515",
+      "picked": null,
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-80A006",
+    "customer_name": "Daniel Carter",
+    "items": [
+      {
+        "name": "Pork Tenderloin",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Garlic Butter",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Asparagus Bundle",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Dinner Rolls",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Sweet Potato",
+        "quantity": 2,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "12:00-13:00",
+    "zone": "Downtown",
+    "status": "picking",
+    "assigned_driver": "Marcus Brown",
+    "timestamps": {
+      "received": "2026-04-02T19:40:43.201515",
+      "picking_started": "2026-04-02T19:50:43.201515",
+      "picked": null,
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-B37366",
+    "customer_name": "Melissa Moore",
+    "items": [
+      {
+        "name": "Pork Tenderloin",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Red Wine (375ml)",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Mixed Greens",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Lemon Herb Sauce",
+        "quantity": 2,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "12:00-13:00",
+    "zone": "Chelsea",
+    "status": "picking",
+    "assigned_driver": "Devon Clarke",
+    "timestamps": {
+      "received": "2026-04-02T19:40:43.201515",
+      "picking_started": "2026-04-02T19:50:43.201515",
+      "picked": null,
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-18663C",
+    "customer_name": "Ronald Martinez",
+    "items": [
+      {
+        "name": "Pork Tenderloin",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Brown Rice",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Red Wine (375ml)",
+        "quantity": 2,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "12:00-13:00",
+    "zone": "Chelsea",
+    "status": "picking",
+    "assigned_driver": "Amara Osei",
+    "timestamps": {
+      "received": "2026-04-02T19:40:43.201515",
+      "picking_started": "2026-04-02T19:50:43.201515",
+      "picked": null,
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-554A0D",
+    "customer_name": "Amanda Clark",
+    "items": [
+      {
+        "name": "Salmon Fillet",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Sweet Potato",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Garlic Butter",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Dinner Rolls",
+        "quantity": 1,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "12:00-13:00",
+    "zone": "Midtown",
+    "status": "picked",
+    "assigned_driver": "Kenji Tanaka",
+    "timestamps": {
+      "received": "2026-04-02T19:40:43.201515",
+      "picking_started": "2026-04-02T19:50:43.201515",
+      "picked": "2026-04-02T20:05:43.201515",
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-C334B6",
+    "customer_name": "Ruth Anderson",
+    "items": [
+      {
+        "name": "Salmon Fillet",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Sweet Potato",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Asparagus Bundle",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Quinoa Mix",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Garlic Butter",
+        "quantity": 1,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "12:00-13:00",
+    "zone": "Downtown",
+    "status": "picked",
+    "assigned_driver": "Tyler Banks",
+    "timestamps": {
+      "received": "2026-04-02T19:40:43.201515",
+      "picking_started": "2026-04-02T19:50:43.201515",
+      "picked": "2026-04-02T20:05:43.201515",
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-3CE52E",
+    "customer_name": "Carol Rodriguez",
+    "items": [
+      {
+        "name": "Tofu Block",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Sweet Potato",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Garlic Butter",
+        "quantity": 1,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "12:00-13:00",
+    "zone": "East Village",
+    "status": "picked",
+    "assigned_driver": "Priya Nair",
+    "timestamps": {
+      "received": "2026-04-02T19:40:43.201515",
+      "picking_started": "2026-04-02T19:50:43.201515",
+      "picked": "2026-04-02T20:05:43.201515",
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-47ECF3",
+    "customer_name": "Daniel Harris",
+    "items": [
+      {
+        "name": "Pork Tenderloin",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Red Wine (375ml)",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Quinoa Mix",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Roasted Vegetables",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Sweet Potato",
+        "quantity": 1,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "12:00-13:00",
+    "zone": "East Village",
+    "status": "picked",
+    "assigned_driver": "Kenji Tanaka",
+    "timestamps": {
+      "received": "2026-04-02T19:40:43.201515",
+      "picking_started": "2026-04-02T19:50:43.201515",
+      "picked": "2026-04-02T20:05:43.201515",
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-4ECE1E",
+    "customer_name": "Andrew Johnson",
+    "items": [
+      {
+        "name": "Tofu Block",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Garlic Butter",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Sweet Potato",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Lemon Herb Sauce",
+        "quantity": 1,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "13:00-14:00",
+    "zone": "Midtown",
+    "status": "received",
+    "assigned_driver": null,
+    "timestamps": {
+      "received": "2026-04-02T20:05:43.201515",
+      "picking_started": null,
+      "picked": null,
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-774AF9",
+    "customer_name": "Maria Flores",
+    "items": [
+      {
+        "name": "Salmon Fillet",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Mixed Greens",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Roasted Vegetables",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Quinoa Mix",
+        "quantity": 1,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "13:00-14:00",
+    "zone": "Downtown",
+    "status": "received",
+    "assigned_driver": null,
+    "timestamps": {
+      "received": "2026-04-02T20:05:43.201515",
+      "picking_started": null,
+      "picked": null,
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-FB03A1",
+    "customer_name": "Ronald Taylor",
+    "items": [
+      {
+        "name": "Chicken Breast",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Asparagus Bundle",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Roasted Vegetables",
+        "quantity": 2,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "13:00-14:00",
+    "zone": "Midtown",
+    "status": "received",
+    "assigned_driver": null,
+    "timestamps": {
+      "received": "2026-04-02T20:05:43.201515",
+      "picking_started": null,
+      "picked": null,
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-1BCDC8",
+    "customer_name": "Sandra Rivera",
+    "items": [
+      {
+        "name": "Chicken Breast",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Sparkling Water",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Roasted Vegetables",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Brown Rice",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Lemon Herb Sauce",
+        "quantity": 2,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "13:00-14:00",
+    "zone": "Chelsea",
+    "status": "received",
+    "assigned_driver": null,
+    "timestamps": {
+      "received": "2026-04-02T20:05:43.201515",
+      "picking_started": null,
+      "picked": null,
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-5EC8A3",
+    "customer_name": "Timothy White",
+    "items": [
+      {
+        "name": "Salmon Fillet",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Red Wine (375ml)",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Mixed Greens",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Roasted Vegetables",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Lemon Herb Sauce",
+        "quantity": 2,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "13:00-14:00",
+    "zone": "Midtown",
+    "status": "received",
+    "assigned_driver": null,
+    "timestamps": {
+      "received": "2026-04-02T20:05:43.201515",
+      "picking_started": null,
+      "picked": null,
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-6B4343",
+    "customer_name": "Christine Martinez",
+    "items": [
+      {
+        "name": "Pork Tenderloin",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Garlic Butter",
+        "quantity": 1,
+        "is_core_item": false
+      },
+      {
+        "name": "Quinoa Mix",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Sweet Potato",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Asparagus Bundle",
+        "quantity": 2,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "13:00-14:00",
+    "zone": "Uptown",
+    "status": "received",
+    "assigned_driver": null,
+    "timestamps": {
+      "received": "2026-04-02T20:05:43.201515",
+      "picking_started": null,
+      "picked": null,
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-8A83B9",
+    "customer_name": "Melissa Garcia",
+    "items": [
+      {
+        "name": "Chicken Breast",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Dinner Rolls",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Lemon Herb Sauce",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Red Wine (375ml)",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Asparagus Bundle",
+        "quantity": 2,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "13:00-14:00",
+    "zone": "East Village",
+    "status": "received",
+    "assigned_driver": null,
+    "timestamps": {
+      "received": "2026-04-02T20:05:43.201515",
+      "picking_started": null,
+      "picked": null,
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  },
+  {
+    "id": "ORD-F003E2",
+    "customer_name": "Maria Young",
+    "items": [
+      {
+        "name": "Tofu Block",
+        "quantity": 1,
+        "is_core_item": true
+      },
+      {
+        "name": "Asparagus Bundle",
+        "quantity": 2,
+        "is_core_item": false
+      },
+      {
+        "name": "Sparkling Water",
+        "quantity": 2,
+        "is_core_item": false
+      }
+    ],
+    "delivery_window": "13:00-14:00",
+    "zone": "Chelsea",
+    "status": "received",
+    "assigned_driver": null,
+    "timestamps": {
+      "received": "2026-04-02T20:05:43.201515",
+      "picking_started": null,
+      "picked": null,
+      "dispatched": null,
+      "delivered": null
+    },
+    "missing_items": [],
+    "notes": "",
+    "risk_level": "green"
+  }
+]

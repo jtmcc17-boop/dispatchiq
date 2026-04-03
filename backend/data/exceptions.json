@@ -1,0 +1,74 @@
+[
+  {
+    "id": "EXC-CCAD1D8E",
+    "type": "missing_item",
+    "order_id": "ORD-MINOR2",
+    "severity": "low",
+    "description": "Non-core item Red Wine (375ml) missing from order ORD-MINOR2 (picking status)",
+    "agent_recommendation": "Log and notify CS post-delivery. Order can proceed if customer is informed.",
+    "status": "open",
+    "cs_notified": false,
+    "created_at": "2026-04-03T10:26:15.069118",
+    "resolved_at": null
+  },
+  {
+    "id": "EXC-95374F63",
+    "type": "missing_item",
+    "order_id": "ORD-MINOR1",
+    "severity": "low",
+    "description": "Non-core item Sweet Potato missing from order ORD-MINOR1 (picked status)",
+    "agent_recommendation": "Log and notify CS post-delivery. Order can proceed if customer is informed.",
+    "status": "open",
+    "cs_notified": false,
+    "created_at": "2026-04-03T10:26:15.066408",
+    "resolved_at": null
+  },
+  {
+    "id": "EXC-7DBD1579",
+    "type": "coverage_gap",
+    "order_id": null,
+    "severity": "medium",
+    "description": "Downtown zone at risk - 8 pending orders with only 1 available driver due to Jasmine Wong callout",
+    "agent_recommendation": "Monitor closely. Consider reassigning drivers from adjacent zones if delays occur.",
+    "status": "open",
+    "cs_notified": false,
+    "created_at": "2026-04-03T10:26:11.042954",
+    "resolved_at": null
+  },
+  {
+    "id": "EXC-57268E15",
+    "type": "coverage_gap",
+    "order_id": null,
+    "severity": "medium",
+    "description": "Chelsea zone at risk - 9 pending orders with only 2 available drivers (2 bikers)",
+    "agent_recommendation": "Monitor closely. Consider reassigning drivers from Uptown (3 available) if delays occur.",
+    "status": "open",
+    "cs_notified": false,
+    "created_at": "2026-04-03T10:26:11.041539",
+    "resolved_at": null
+  },
+  {
+    "id": "EXC-848FD02C",
+    "type": "missing_item",
+    "order_id": "ORD-CORE01",
+    "severity": "high",
+    "description": "Core item Pork Tenderloin missing from order ORD-CORE01",
+    "agent_recommendation": "CRITICAL: Do not dispatch. Notify CS immediately. Offer substitution or cancellation.",
+    "status": "open",
+    "cs_notified": false,
+    "created_at": "2026-04-03T10:26:06.480985",
+    "resolved_at": null
+  },
+  {
+    "id": "EXC-PRELOAD1",
+    "type": "coverage_gap",
+    "order_id": null,
+    "severity": "high",
+    "description": "Jasmine Wong (driver, Downtown/East Village) called out. Downtown zone has 0 available drivers.",
+    "agent_recommendation": "Reassign Downtown orders to Tyler Banks (driver). Alert dispatcher to find backup coverage for East Village.",
+    "status": "open",
+    "cs_notified": false,
+    "created_at": "2026-04-02T20:00:43.202472",
+    "resolved_at": null
+  }
+]

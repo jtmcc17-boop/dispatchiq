@@ -1,0 +1,136 @@
+[
+  {
+    "id": "DRV-C7C224",
+    "name": "Carlos Reyes",
+    "type": "biker",
+    "zones": [
+      "Uptown",
+      "Midtown"
+    ],
+    "status": "available",
+    "current_orders": []
+  },
+  {
+    "id": "DRV-9E3E10",
+    "name": "Ana Flores",
+    "type": "biker",
+    "zones": [
+      "Uptown",
+      "Midtown"
+    ],
+    "status": "on_delivery",
+    "current_orders": []
+  },
+  {
+    "id": "DRV-083953",
+    "name": "Marcus Webb",
+    "type": "biker",
+    "zones": [
+      "Midtown",
+      "Chelsea"
+    ],
+    "status": "available",
+    "current_orders": []
+  },
+  {
+    "id": "DRV-79E5CB",
+    "name": "Priya Nair",
+    "type": "biker",
+    "zones": [
+      "Chelsea",
+      "East Village"
+    ],
+    "status": "available",
+    "current_orders": []
+  },
+  {
+    "id": "DRV-3A67E1",
+    "name": "Devon Clarke",
+    "type": "biker",
+    "zones": [
+      "Chelsea",
+      "East Village"
+    ],
+    "status": "on_delivery",
+    "current_orders": []
+  },
+  {
+    "id": "DRV-656E20",
+    "name": "Kenji Tanaka",
+    "type": "biker",
+    "zones": [
+      "East Village",
+      "Midtown"
+    ],
+    "status": "available",
+    "current_orders": []
+  },
+  {
+    "id": "DRV-6CC93C",
+    "name": "Sofia Morales",
+    "type": "biker",
+    "zones": [
+      "Uptown"
+    ],
+    "status": "available",
+    "current_orders": []
+  },
+  {
+    "id": "DRV-C98ACA",
+    "name": "Liam O'Brien",
+    "type": "biker",
+    "zones": [
+      "Midtown",
+      "Chelsea"
+    ],
+    "status": "on_delivery",
+    "current_orders": []
+  },
+  {
+    "id": "DRV-78E7BC",
+    "name": "Marcus Brown",
+    "type": "driver",
+    "zones": [
+      "Downtown",
+      "Midtown",
+      "Chelsea"
+    ],
+    "status": "on_delivery",
+    "current_orders": []
+  },
+  {
+    "id": "DRV-ACAEF1",
+    "name": "Jasmine Wong",
+    "type": "driver",
+    "zones": [
+      "Downtown",
+      "East Village"
+    ],
+    "status": "called_out",
+    "current_orders": []
+  },
+  {
+    "id": "DRV-C0EE6E",
+    "name": "Tyler Banks",
+    "type": "driver",
+    "zones": [
+      "Uptown",
+      "Downtown",
+      "Midtown"
+    ],
+    "status": "available",
+    "current_orders": []
+  },
+  {
+    "id": "DRV-F05AA9",
+    "name": "Amara Osei",
+    "type": "driver",
+    "zones": [
+      "Downtown",
+      "East Village",
+      "Chelsea"
+    ],
+    "status": "on_delivery",
+    "current_orders": []
+  }
+]
