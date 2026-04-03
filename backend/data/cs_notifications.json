@@ -1,5 +1,16 @@
 [
   {
+    "id": "CS-41074502",
+    "order_id": "ORD-CORE01",
+    "customer_name": "Rachel Kim",
+    "issue_type": "Critical Missing Core Item",
+    "details": "CRITICAL: Core item Pork Tenderloin missing from order ORD-CORE01. Order currently in picking - DO NOT DISPATCH until resolved. Customer: Rachel Kim. Offer substitution or partial refund immediately.",
+    "customer_message": "We sincerely apologize, but an important item in your order (Pork Tenderloin) is currently unavailable. We'd like to offer you a substitution or full refund for this item. Please let us know your preference.",
+    "status": "pending",
+    "created_at": "2026-04-03T10:33:43.380787",
+    "handled_at": null
+  },
+  {
     "id": "CS-751365D3",
     "order_id": "ORD-CORE01",
     "customer_name": "Rachel Kim",
