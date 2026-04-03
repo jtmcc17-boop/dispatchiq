@@ -1,18 +1,18 @@
 from __future__ import annotations
 
 import asyncio
+import uuid
 from contextlib import asynccontextmanager
 from datetime import datetime
 from typing import Optional
-import uuid
 
-from fastapi import FastAPI, HTTPException, BackgroundTasks
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 import data_store
-from models import Order, Driver, Exception_, CSNotification, AgentRunResult
-from agent import AgentMonitor, run_agent_cycle, generate_shift_summary_text, compute_risk_level
+from models import CSNotification
+from agent import AgentMonitor, run_agent_cycle, generate_shift_summary_structured, compute_risk_level
 
 # ─── App lifecycle ─────────────────────────────────────────────────────────────
 
@@ -48,6 +48,7 @@ class OrderStatusUpdate(BaseModel):
     driver_id: Optional[str] = None
     missing_items: Optional[list[str]] = None
     notes: Optional[str] = None
+    items_picked: Optional[int] = None
 
 
 class DriverStatusUpdate(BaseModel):
@@ -62,6 +63,54 @@ class CSNotificationUpdate(BaseModel):
     status: str
 
 
+# ─── CS batching helper ────────────────────────────────────────────────────────
+
+def _batch_pending_cs_notifications(order_id: str):
+    """When an order moves to 'picked', consolidate all pending_batch OOS items into one notification."""
+    notifications = data_store.get_cs_notifications()
+    batch = [n for n in notifications if n.order_id == order_id and n.status == "pending_batch"]
+
+    if not batch:
+        return
+
+    order = data_store.get_order(order_id)
+    if not order:
+        return
+
+    # Collect OOS items from the staged notifications
+    oos_items = []
+    for n in batch:
+        # item name is stored in details: "OOS during picking: <item>"
+        if ": " in n.details:
+            oos_items.append(n.details.split(": ", 1)[-1])
+        else:
+            oos_items.append(n.issue_type.replace("_", " ").title())
+
+    items_str = ", ".join(oos_items)
+    first_name = order.customer_name.split()[0]
+
+    batched = CSNotification(
+        id=f"CS-{uuid.uuid4().hex[:8].upper()}",
+        order_id=order_id,
+        customer_name=order.customer_name,
+        issue_type="missing_items_batch",
+        details=f"The following items were OOS during picking: {items_str}",
+        customer_message=(
+            f"Hi {first_name}, we wanted to let you know that the following items were "
+            f"unavailable for your order: {items_str}. "
+            f"We're sorry for any inconvenience — your order has been packed with everything else available."
+        ),
+        status="pending",
+        notification_subtype="batched",
+        created_at=datetime.now().isoformat(),
+    )
+    data_store.create_cs_notification(batched)
+
+    # Remove the individual staged notifications
+    remaining = [n for n in notifications if n not in batch]
+    data_store.save_cs_notifications(remaining)
+
+
 # ─── Orders ───────────────────────────────────────────────────────────────────
 
 @app.get("/orders")
@@ -69,18 +118,16 @@ def list_orders(window: Optional[str] = None, zone: Optional[str] = None):
     orders = data_store.get_orders()
     now = datetime.now()
 
-    # Compute risk levels
     result = []
     for o in orders:
-        o_dict = o.model_dump()
-        o_dict["risk_level"] = compute_risk_level(o, now)
-        result.append(o_dict)
+        d = o.model_dump()
+        d["risk_level"] = compute_risk_level(o, now)
+        result.append(d)
 
     if window:
         result = [o for o in result if o["delivery_window"] == window]
     if zone:
         result = [o for o in result if o["zone"] == zone]
-
     return result
 
 
@@ -89,17 +136,16 @@ def get_order(order_id: str):
     order = data_store.get_order(order_id)
     if not order:
         raise HTTPException(404, f"Order {order_id} not found")
-    o_dict = order.model_dump()
-    o_dict["risk_level"] = compute_risk_level(order, datetime.now())
-    return o_dict
+    d = order.model_dump()
+    d["risk_level"] = compute_risk_level(order, datetime.now())
+    return d
 
 
 @app.patch("/orders/{order_id}")
 def update_order(order_id: str, update: OrderStatusUpdate):
     now_iso = datetime.now().isoformat()
-    updates = {"status": update.status}
+    updates: dict = {"status": update.status}
 
-    # Auto-set timestamps
     ts_map = {
         "picking": "picking_started",
         "picked": "picked",
@@ -113,6 +159,8 @@ def update_order(order_id: str, update: OrderStatusUpdate):
         updates["missing_items"] = update.missing_items
     if update.notes is not None:
         updates["notes"] = update.notes
+    if update.items_picked is not None:
+        updates["items_picked"] = update.items_picked
     if update.driver_id:
         driver = data_store.get_driver(update.driver_id)
         if driver:
@@ -121,6 +169,11 @@ def update_order(order_id: str, update: OrderStatusUpdate):
     order = data_store.update_order(order_id, updates)
     if not order:
         raise HTTPException(404, f"Order {order_id} not found")
+
+    # When picking completes, batch all staged OOS notifications into one
+    if update.status == "picked":
+        _batch_pending_cs_notifications(order_id)
+
     return order.model_dump()
 
 
@@ -151,7 +204,7 @@ def list_exceptions(status: Optional[str] = None):
 
 @app.patch("/exceptions/{exc_id}")
 def update_exception(exc_id: str, update: ExceptionUpdate):
-    updates = {"status": update.status}
+    updates: dict = {"status": update.status}
     if update.status == "resolved":
         updates["resolved_at"] = datetime.now().isoformat()
     exc = data_store.update_exception(exc_id, updates)
@@ -167,12 +220,15 @@ def list_cs_notifications(status: Optional[str] = None):
     notifications = data_store.get_cs_notifications()
     if status:
         notifications = [n for n in notifications if n.status == status]
+    else:
+        # By default exclude pending_batch (not ready for CS yet)
+        notifications = [n for n in notifications if n.status != "pending_batch"]
     return [n.model_dump() for n in notifications]
 
 
 @app.patch("/cs-notifications/{notif_id}")
 def update_cs_notification(notif_id: str, update: CSNotificationUpdate):
-    updates = {"status": update.status}
+    updates: dict = {"status": update.status}
     if update.status == "handled":
         updates["handled_at"] = datetime.now().isoformat()
     notif = data_store.update_cs_notification(notif_id, updates)
@@ -185,10 +241,8 @@ def update_cs_notification(notif_id: str, update: CSNotificationUpdate):
 
 @app.post("/agent/run")
 def run_agent():
-    """Trigger an immediate agent monitoring cycle."""
     try:
-        result = run_agent_cycle()
-        return result
+        return run_agent_cycle()
     except Exception as e:
         raise HTTPException(500, f"Agent error: {str(e)}")
 
@@ -200,12 +254,10 @@ def agent_status():
 
 @app.get("/agent/shift-summary")
 async def shift_summary():
-    """Generate an end-of-shift narrative summary."""
     try:
-        text = await generate_shift_summary_text()
-        stats = data_store.get_exceptions()
+        structured = await generate_shift_summary_structured()
         return {
-            "summary": text,
+            "structured": structured,
             "generated_at": datetime.now().isoformat(),
         }
     except Exception as e:
@@ -222,7 +274,7 @@ def get_stats():
     notifications = data_store.get_cs_notifications()
     now = datetime.now()
 
-    status_counts = {}
+    status_counts: dict[str, int] = {}
     for o in orders:
         status_counts[o.status] = status_counts.get(o.status, 0) + 1
 
@@ -231,12 +283,30 @@ def get_stats():
     for w in windows:
         w_orders = [o for o in orders if o.delivery_window == w]
         at_risk = [o for o in w_orders if compute_risk_level(o, now) in ("yellow", "red")]
+        picking_orders = [o for o in w_orders if o.status == "picking"]
         window_stats[w] = {
             "total": len(w_orders),
             "delivered": sum(1 for o in w_orders if o.status == "delivered"),
             "dispatched": sum(1 for o in w_orders if o.status == "dispatched"),
             "at_risk": len(at_risk),
+            # Pick progress across all picking orders in this window
+            "items_picked": sum(o.items_picked for o in picking_orders),
+            "total_picking_items": sum(o.total_items for o in picking_orders),
+            "picking_orders": len(picking_orders),
         }
+
+    # Group drivers by company
+    company_stats: dict[str, dict] = {}
+    for d in drivers:
+        co = d.company or "Unknown"
+        if co not in company_stats:
+            company_stats[co] = {"expected": 0, "present": 0, "called_out": 0, "drivers": []}
+        company_stats[co]["expected"] += 1
+        if d.status != "called_out":
+            company_stats[co]["present"] += 1
+        else:
+            company_stats[co]["called_out"] += 1
+        company_stats[co]["drivers"].append(d.model_dump())
 
     return {
         "total_orders": len(orders),
@@ -247,6 +317,7 @@ def get_stats():
             "available": sum(1 for d in drivers if d.status == "available"),
             "on_delivery": sum(1 for d in drivers if d.status == "on_delivery"),
             "called_out": sum(1 for d in drivers if d.status == "called_out"),
+            "by_company": company_stats,
         },
         "open_exceptions": sum(1 for e in exceptions if e.status == "open"),
         "pending_notifications": sum(1 for n in notifications if n.status == "pending"),

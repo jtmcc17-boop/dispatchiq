@@ -2,6 +2,7 @@ export interface OrderItem {
   name: string
   quantity: number
   is_core_item: boolean
+  is_heavy: boolean
 }
 
 export interface OrderTimestamps {
@@ -27,6 +28,10 @@ export interface Order {
   missing_items: string[]
   notes: string
   risk_level: RiskLevel
+  items_picked: number
+  total_items: number
+  has_heavy_items: boolean
+  needs_driver: boolean
 }
 
 export type DriverType = 'biker' | 'driver'
@@ -39,9 +44,10 @@ export interface Driver {
   zones: string[]
   status: DriverStatus
   current_orders: string[]
+  company: string
 }
 
-export type ExceptionType = 'late_risk' | 'missing_item' | 'coverage_gap' | 'delivery_dispute'
+export type ExceptionType = 'late_risk' | 'missing_item' | 'coverage_gap' | 'delivery_dispute' | 'driver_reservation'
 export type ExceptionSeverity = 'low' | 'medium' | 'high'
 export type ExceptionStatus = 'open' | 'escalated' | 'resolved'
 
@@ -58,7 +64,8 @@ export interface Exception {
   resolved_at: string | null
 }
 
-export type CSNotificationStatus = 'pending' | 'handled'
+export type CSNotificationStatus = 'pending_batch' | 'pending' | 'handled'
+export type CSNotificationSubtype = 'immediate' | 'batched' | 'standard'
 
 export interface CSNotification {
   id: string
@@ -68,6 +75,7 @@ export interface CSNotification {
   details: string
   customer_message: string
   status: CSNotificationStatus
+  notification_subtype: CSNotificationSubtype
   created_at: string
   handled_at: string | null
 }
@@ -77,6 +85,16 @@ export interface WindowStats {
   delivered: number
   dispatched: number
   at_risk: number
+  items_picked: number
+  total_picking_items: number
+  picking_orders: number
+}
+
+export interface CompanyStats {
+  expected: number
+  present: number
+  called_out: number
+  drivers: Driver[]
 }
 
 export interface Stats {
@@ -88,9 +106,17 @@ export interface Stats {
     available: number
     on_delivery: number
     called_out: number
+    by_company: Record<string, CompanyStats>
   }
   open_exceptions: number
   pending_notifications: number
+}
+
+export interface ShiftSummaryStructured {
+  handoff_status: 'clean' | 'issues' | 'critical'
+  critical_issues: Array<{ title: string; detail: string; action: string }>
+  next_priorities: string[]
+  operational_notes: string
 }
 
 export interface AgentStatus {

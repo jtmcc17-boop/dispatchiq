@@ -5,6 +5,7 @@ import type {
   CSNotification,
   Stats,
   AgentStatus,
+  ShiftSummaryStructured,
 } from '../types'
 
 const BASE = '/api'
@@ -21,7 +22,6 @@ async function request<T>(path: string, options?: RequestInit): Promise<T> {
   return res.json()
 }
 
-// ─── Orders ───────────────────────────────────────────────────────────────────
 export const api = {
   orders: {
     list: (window?: string, zone?: string) => {
@@ -36,6 +36,11 @@ export const api = {
       request<Order>(`/orders/${id}`, {
         method: 'PATCH',
         body: JSON.stringify({ status, ...extra }),
+      }),
+    updatePickProgress: (id: string, items_picked: number) =>
+      request<Order>(`/orders/${id}`, {
+        method: 'PATCH',
+        body: JSON.stringify({ status: 'picking', items_picked }),
       }),
   },
 
@@ -61,10 +66,7 @@ export const api = {
   },
 
   csNotifications: {
-    list: (status?: string) => {
-      const qs = status ? `?status=${status}` : ''
-      return request<CSNotification[]>(`/cs-notifications${qs}`)
-    },
+    list: () => request<CSNotification[]>('/cs-notifications'),
     markHandled: (id: string) =>
       request<CSNotification>(`/cs-notifications/${id}`, {
         method: 'PATCH',
@@ -79,6 +81,7 @@ export const api = {
   agent: {
     run: () => request<AgentStatus>('/agent/run', { method: 'POST' }),
     status: () => request<AgentStatus>('/agent/status'),
-    shiftSummary: () => request<{ summary: string; generated_at: string }>('/agent/shift-summary'),
+    shiftSummary: () =>
+      request<{ structured: ShiftSummaryStructured; generated_at: string }>('/agent/shift-summary'),
   },
 }

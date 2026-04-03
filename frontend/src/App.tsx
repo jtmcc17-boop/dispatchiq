@@ -99,7 +99,7 @@ export default function App() {
       <div className="flex flex-1 overflow-hidden">
         {tab === 'dashboard' && (
           <>
-            <DriverPanel drivers={drivers} />
+            <DriverPanel drivers={drivers} stats={stats} />
 
             <div className="flex flex-1 overflow-hidden">
               <OrdersView

@@ -24,7 +24,6 @@ MODEL = "claude-sonnet-4-20250514"
 # ─── Risk calculation helpers ─────────────────────────────────────────────────
 
 def _parse_window(window: str) -> tuple[time, time]:
-    """Parse '11:00-12:00' into (start_time, end_time)."""
     start_str, end_str = window.split("-")
     start_h, start_m = map(int, start_str.split(":"))
     end_h, end_m = map(int, end_str.split(":"))
@@ -32,7 +31,6 @@ def _parse_window(window: str) -> tuple[time, time]:
 
 
 def compute_risk_level(order: Order, now: datetime) -> str:
-    """Return 'green', 'yellow', or 'red' based on window timing."""
     if order.status in ("delivered", "failed"):
         return "green"
     if order.status == "dispatched":
@@ -43,30 +41,21 @@ def compute_risk_level(order: Order, now: datetime) -> str:
     except Exception:
         return "green"
 
-    now_t = now.time()
     start = datetime.combine(now.date(), start_t)
     end = datetime.combine(now.date(), end_t)
-    now_dt = now
 
-    minutes_into_window = (now_dt - start).total_seconds() / 60
-    minutes_to_end = (end - now_dt).total_seconds() / 60
+    minutes_into_window = (now - start).total_seconds() / 60
+    minutes_to_end = (end - now).total_seconds() / 60
 
-    if now_dt < start:
-        return "green"  # window hasn't started
+    if now < start:
+        return "green"
 
-    # Red: past window end and not dispatched
-    if now_dt >= end and order.status not in ("dispatched", "delivered"):
+    if now >= end and order.status not in ("dispatched", "delivered"):
         return "red"
-
-    # Red: deep into window and still picking/received
     if minutes_into_window > 30 and order.status in ("received", "picking"):
         return "red"
-
-    # Yellow: 15+ minutes in and still not picked
     if minutes_into_window > 15 and order.status in ("received", "picking"):
         return "yellow"
-
-    # Yellow: past mid-window and not dispatched
     if minutes_to_end < 20 and order.status in ("received", "picking", "picked"):
         return "yellow"
 
@@ -76,12 +65,11 @@ def compute_risk_level(order: Order, now: datetime) -> str:
 # ─── Tool implementations ─────────────────────────────────────────────────────
 
 def tool_check_window_risk(delivery_window: str) -> dict:
-    """Analyze all orders in a window and return risk metrics."""
     orders = data_store.get_orders()
     window_orders = [o for o in orders if o.delivery_window == delivery_window]
 
     if not window_orders:
-        return {"window": delivery_window, "total": 0, "at_risk": [], "message": "No orders in this window"}
+        return {"window": delivery_window, "total": 0, "message": "No orders in this window"}
 
     now = datetime.now()
     at_risk = []
@@ -97,14 +85,12 @@ def tool_check_window_risk(delivery_window: str) -> dict:
                 "status": order.status,
                 "risk": risk,
                 "zone": order.zone,
-                "assigned_driver": order.assigned_driver,
+                "needs_driver": order.needs_driver,
+                "total_items": order.total_items,
             })
 
     drivers = data_store.get_drivers()
-    available_drivers = [
-        d for d in drivers
-        if d.status == "available"
-    ]
+    available_drivers = [d for d in drivers if d.status == "available"]
 
     return {
         "window": delivery_window,
@@ -122,19 +108,13 @@ def tool_check_window_risk(delivery_window: str) -> dict:
 
 
 def tool_flag_missing_item(order_id: str, item_name: str) -> dict:
-    """Evaluate criticality of a missing item."""
     order = data_store.get_order(order_id)
     if not order:
         return {"error": f"Order {order_id} not found"}
 
     item = next((i for i in order.items if i.name.lower() == item_name.lower()), None)
-    if not item:
-        # Check if it's in missing_items list
-        is_core = False
-        item_label = item_name
-    else:
-        is_core = item.is_core_item
-        item_label = item.name
+    is_core = item.is_core_item if item else False
+    item_label = item.name if item else item_name
 
     return {
         "order_id": order_id,
@@ -144,15 +124,14 @@ def tool_flag_missing_item(order_id: str, item_name: str) -> dict:
         "order_status": order.status,
         "severity": "high" if is_core else "low",
         "recommendation": (
-            "CRITICAL: Do not dispatch. Notify CS immediately. Offer substitution or cancellation."
+            "CRITICAL: Do not dispatch. Notify CS immediately (IMMEDIATE notification). Offer substitution or cancellation."
             if is_core else
-            "Log and notify CS post-delivery. Order can proceed if customer is informed."
+            "Create a PENDING_BATCH notification. It will be bundled with other OOS items when picking completes."
         ),
     }
 
 
 def tool_check_driver_coverage(zone: str) -> dict:
-    """Check driver availability for a zone."""
     drivers = data_store.get_drivers()
     zone_drivers = [d for d in drivers if zone in d.zones]
     available = [d for d in zone_drivers if d.status == "available"]
@@ -182,6 +161,65 @@ def tool_check_driver_coverage(zone: str) -> dict:
     }
 
 
+def tool_check_driver_reservation() -> dict:
+    """Scan all upcoming large/heavy orders and check if enough real drivers are available."""
+    orders = data_store.get_orders()
+    drivers = data_store.get_drivers()
+
+    available_car_drivers = [d for d in drivers if d.status == "available" and d.type == "driver"]
+    on_delivery_car_drivers = [d for d in drivers if d.status == "on_delivery" and d.type == "driver"]
+
+    # Large orders not yet dispatched
+    large_orders = [
+        o for o in orders
+        if o.needs_driver and o.status not in ("dispatched", "delivered", "failed")
+    ]
+
+    if not large_orders:
+        return {
+            "status": "OK",
+            "message": "No upcoming large orders requiring dedicated drivers",
+            "available_car_drivers": len(available_car_drivers),
+        }
+
+    by_window: dict[str, list] = {}
+    for o in large_orders:
+        by_window.setdefault(o.delivery_window, []).append({
+            "order_id": o.id,
+            "customer": o.customer_name,
+            "zone": o.zone,
+            "total_items": o.total_items,
+            "has_heavy_items": o.has_heavy_items,
+            "status": o.status,
+        })
+
+    warnings = []
+    for window, window_large in by_window.items():
+        if len(window_large) > len(available_car_drivers):
+            warnings.append({
+                "window": window,
+                "large_orders_needing_driver": len(window_large),
+                "available_car_drivers": len(available_car_drivers),
+                "gap": len(window_large) - len(available_car_drivers),
+                "at_risk_orders": window_large,
+            })
+
+    return {
+        "status": "WARNING" if warnings else "OK",
+        "total_large_orders": len(large_orders),
+        "available_car_drivers": len(available_car_drivers),
+        "car_drivers_on_delivery": len(on_delivery_car_drivers),
+        "large_orders_by_window": by_window,
+        "warnings": warnings,
+        "recommendation": (
+            f"Driver shortage: {len(warnings)} window(s) have more large orders than available drivers. "
+            "Consider pulling car drivers back early or rebalancing loads."
+            if warnings else
+            "Driver supply looks adequate for upcoming large orders."
+        ),
+    }
+
+
 def tool_create_exception(
     exc_type: str,
     severity: str,
@@ -189,7 +227,6 @@ def tool_create_exception(
     agent_recommendation: str,
     order_id: str = None,
 ) -> dict:
-    """Create an exception record."""
     exc = Exception_(
         id=f"EXC-{uuid.uuid4().hex[:8].upper()}",
         type=exc_type,
@@ -210,10 +247,15 @@ def tool_generate_cs_notification(
     issue_type: str,
     customer_message: str,
     details: str,
+    is_immediate: bool = False,
 ) -> dict:
-    """Generate a CS notification."""
+    """Create a CS notification. Set is_immediate=True for core item issues (shown right away).
+    For minor OOS during picking, use is_immediate=False — it will be batched at pick completion."""
     order = data_store.get_order(order_id)
     customer_name = order.customer_name if order else "Unknown Customer"
+
+    status = "pending" if is_immediate else "pending_batch"
+    subtype = "immediate" if is_immediate else "standard"
 
     notif = CSNotification(
         id=f"CS-{uuid.uuid4().hex[:8].upper()}",
@@ -222,25 +264,26 @@ def tool_generate_cs_notification(
         issue_type=issue_type,
         details=details,
         customer_message=customer_message,
-        status="pending",
+        status=status,
+        notification_subtype=subtype,
         created_at=datetime.now().isoformat(),
     )
     result = data_store.create_cs_notification(notif)
     return {
         "notification_id": result.id,
-        "created": result.id == notif.id,
-        "duplicate": result.id != notif.id,
+        "status": status,
+        "subtype": subtype,
         "customer": customer_name,
+        "note": "Will be shown to CS immediately." if is_immediate else "Staged — will be batched when picking completes.",
     }
 
 
 def tool_generate_shift_summary() -> dict:
-    """Compile shift statistics for the summary."""
     orders = data_store.get_orders()
     exceptions = data_store.get_exceptions()
     notifications = data_store.get_cs_notifications()
 
-    status_counts = {}
+    status_counts: dict[str, int] = {}
     for o in orders:
         status_counts[o.status] = status_counts.get(o.status, 0) + 1
 
@@ -249,8 +292,8 @@ def tool_generate_shift_summary() -> dict:
     pending_notifications = [n for n in notifications if n.status == "pending"]
 
     windows = sorted(set(o.delivery_window for o in orders))
-    window_stats = {}
     now = datetime.now()
+    window_stats = {}
     for w in windows:
         w_orders = [o for o in orders if o.delivery_window == w]
         late = [o for o in w_orders if compute_risk_level(o, now) == "red"]
@@ -267,30 +310,26 @@ def tool_generate_shift_summary() -> dict:
         "open_exceptions": len(open_exceptions),
         "resolved_exceptions": len(resolved_exceptions),
         "pending_cs_notifications": len(pending_notifications),
-        "exception_types": {e.type: sum(1 for ex in open_exceptions if ex.type == e.type) for e in open_exceptions},
     }
 
 
-# ─── Tool dispatcher ──────────────────────────────────────────────────────────
+# ─── Tool registry ─────────────────────────────────────────────────────────────
 
 TOOLS = [
     {
         "name": "check_window_risk",
-        "description": "Calculate whether orders in a delivery window are at risk of being late. Returns status breakdown, at-risk orders, and available driver count.",
+        "description": "Calculate whether orders in a delivery window are at risk of being late.",
         "input_schema": {
             "type": "object",
             "properties": {
-                "delivery_window": {
-                    "type": "string",
-                    "description": "Window string like '11:00-12:00'",
-                }
+                "delivery_window": {"type": "string", "description": "e.g. '11:00-12:00'"}
             },
             "required": ["delivery_window"],
         },
     },
     {
         "name": "flag_missing_item",
-        "description": "Evaluate the criticality of a missing item in an order and recommend action.",
+        "description": "Evaluate criticality of a missing item. Core items need IMMEDIATE CS notification. Minor items get batched.",
         "input_schema": {
             "type": "object",
             "properties": {
@@ -305,55 +344,60 @@ TOOLS = [
         "description": "Check driver availability and coverage gaps for a delivery zone.",
         "input_schema": {
             "type": "object",
-            "properties": {
-                "zone": {"type": "string", "description": "Zone name, e.g. 'Downtown'"},
-            },
+            "properties": {"zone": {"type": "string"}},
             "required": ["zone"],
         },
     },
     {
+        "name": "check_driver_reservation",
+        "description": "Scan all upcoming large/heavy orders (needs_driver=True) and verify enough car drivers are reserved. Warns if driver supply is insufficient for large orders in upcoming windows.",
+        "input_schema": {"type": "object", "properties": {}, "required": []},
+    },
+    {
         "name": "create_exception",
-        "description": "Create an exception record for an operational issue detected during monitoring.",
+        "description": "Create an exception record for an operational issue.",
         "input_schema": {
             "type": "object",
             "properties": {
                 "exc_type": {
                     "type": "string",
-                    "enum": ["late_risk", "missing_item", "coverage_gap", "delivery_dispute"],
+                    "enum": ["late_risk", "missing_item", "coverage_gap", "delivery_dispute", "driver_reservation"],
                 },
                 "severity": {"type": "string", "enum": ["low", "medium", "high"]},
                 "description": {"type": "string"},
                 "agent_recommendation": {"type": "string"},
-                "order_id": {"type": "string", "description": "Optional order ID if tied to specific order"},
+                "order_id": {"type": "string"},
             },
             "required": ["exc_type", "severity", "description", "agent_recommendation"],
         },
     },
     {
         "name": "generate_cs_notification",
-        "description": "Create a notification for the CS queue about an order issue. MUST be used when a core item is missing, an order will definitely be late, or a delivery dispute is logged.",
+        "description": (
+            "Create a CS queue notification. "
+            "RULES: (1) Core item missing → is_immediate=True, notify before dispatch. "
+            "(2) Minor OOS during picking → is_immediate=False, will be batched at pick completion. "
+            "(3) Late delivery / dispute → is_immediate=True."
+        ),
         "input_schema": {
             "type": "object",
             "properties": {
                 "order_id": {"type": "string"},
                 "issue_type": {"type": "string"},
-                "customer_message": {
-                    "type": "string",
-                    "description": "The message CS should relay to the customer",
+                "customer_message": {"type": "string"},
+                "details": {"type": "string"},
+                "is_immediate": {
+                    "type": "boolean",
+                    "description": "True for core item OOS, late delivery, disputes. False for minor OOS (will be batched).",
                 },
-                "details": {"type": "string", "description": "Internal details for the CS rep"},
             },
-            "required": ["order_id", "issue_type", "customer_message", "details"],
+            "required": ["order_id", "issue_type", "customer_message", "details", "is_immediate"],
         },
     },
     {
         "name": "generate_shift_summary",
-        "description": "Compile current shift statistics — total orders, delivery rates, open exceptions, pending CS notifications.",
-        "input_schema": {
-            "type": "object",
-            "properties": {},
-            "required": [],
-        },
+        "description": "Compile current shift statistics.",
+        "input_schema": {"type": "object", "properties": {}, "required": []},
     },
 ]
 
@@ -365,6 +409,8 @@ def dispatch_tool(tool_name: str, tool_input: dict) -> Any:
         return tool_flag_missing_item(tool_input["order_id"], tool_input["item_name"])
     elif tool_name == "check_driver_coverage":
         return tool_check_driver_coverage(tool_input["zone"])
+    elif tool_name == "check_driver_reservation":
+        return tool_check_driver_reservation()
     elif tool_name == "create_exception":
         return tool_create_exception(**tool_input)
     elif tool_name == "generate_cs_notification":
@@ -375,62 +421,50 @@ def dispatch_tool(tool_name: str, tool_input: dict) -> Any:
         return {"error": f"Unknown tool: {tool_name}"}
 
 
-# ─── Main agent loop ──────────────────────────────────────────────────────────
+# ─── Monitoring loop ──────────────────────────────────────────────────────────
 
 def build_monitoring_prompt() -> str:
     orders = data_store.get_orders()
     drivers = data_store.get_drivers()
     now = datetime.now()
 
-    # Update risk levels
     active_orders = [o for o in orders if o.status not in ("delivered", "failed")]
     windows = sorted(set(o.delivery_window for o in active_orders))
-
-    # Find orders with missing items not yet flagged
     orders_with_missing = [o for o in orders if o.missing_items and o.status not in ("delivered", "failed")]
-
-    # Called-out drivers
     called_out = [d for d in drivers if d.status == "called_out"]
-
-    # Zones with active orders
     active_zones = sorted(set(o.zone for o in active_orders))
+    large_orders = [o for o in active_orders if o.needs_driver]
 
-    prompt = f"""You are DispatchIQ, an agentic operations monitor for a last-mile delivery company.
+    return f"""You are DispatchIQ, an agentic operations monitor for a last-mile delivery company.
 Current time: {now.strftime('%I:%M %p')} on {now.strftime('%A, %B %d, %Y')}
 
-Your job is to:
+Your job this cycle:
 1. Check every active delivery window for late-risk orders
-2. Flag any orders with missing items (especially core items — do NOT let those ship without CS notification)
+2. Flag orders with missing items — core items get IMMEDIATE CS notification, minor OOS gets batched
 3. Check driver coverage for all active zones
-4. Create exceptions and CS notifications for any issues found
-5. Do NOT create duplicate exceptions for issues already flagged
+4. Run check_driver_reservation to see if large orders have enough car drivers
+5. Create exceptions for issues found — skip if already open for the same order/type
+6. Do NOT create duplicate exceptions
 
-ACTIVE DELIVERY WINDOWS: {', '.join(windows) if windows else 'None'}
+ACTIVE WINDOWS: {', '.join(windows) if windows else 'None'}
 ORDERS WITH MISSING ITEMS: {json.dumps([{'id': o.id, 'customer': o.customer_name, 'missing': o.missing_items, 'status': o.status} for o in orders_with_missing])}
 CALLED-OUT DRIVERS: {', '.join(d.name for d in called_out) if called_out else 'None'}
 ACTIVE ZONES: {', '.join(active_zones) if active_zones else 'None'}
+LARGE ORDERS NEEDING DRIVERS: {json.dumps([{'id': o.id, 'window': o.delivery_window, 'items': o.total_items, 'heavy': o.has_heavy_items} for o in large_orders])}
 
-Use your tools to systematically check each window, each zone, and each order with missing items.
-After your analysis, provide a concise ops summary of what you found and what actions you took."""
-
-    return prompt
+After analysis, give a concise ops summary."""
 
 
 def run_agent_cycle() -> dict:
-    """Run one full agent monitoring cycle. Returns summary dict."""
     prompt = build_monitoring_prompt()
-
     messages = [{"role": "user", "content": prompt}]
     exceptions_before = len(data_store.get_exceptions())
-    notifications_before = len(data_store.get_cs_notifications())
+    notifications_before = len([n for n in data_store.get_cs_notifications() if n.status != "pending_batch"])
 
-    # Agentic loop
     final_text = ""
     max_iterations = 20
-    iterations = 0
 
-    while iterations < max_iterations:
-        iterations += 1
+    for _ in range(max_iterations):
         response = client.messages.create(
             model=MODEL,
             max_tokens=4096,
@@ -438,33 +472,27 @@ def run_agent_cycle() -> dict:
             messages=messages,
         )
 
-        # Collect tool uses from this response
         tool_uses = [b for b in response.content if b.type == "tool_use"]
         text_blocks = [b for b in response.content if b.type == "text"]
-
         if text_blocks:
             final_text = text_blocks[-1].text
 
         if response.stop_reason == "end_turn" or not tool_uses:
             break
 
-        # Add assistant message
         messages.append({"role": "assistant", "content": response.content})
-
-        # Execute all tools and build tool results
         tool_results = []
-        for tool_use in tool_uses:
-            result = dispatch_tool(tool_use.name, tool_use.input)
+        for tu in tool_uses:
+            result = dispatch_tool(tu.name, tu.input)
             tool_results.append({
                 "type": "tool_result",
-                "tool_use_id": tool_use.id,
+                "tool_use_id": tu.id,
                 "content": json.dumps(result),
             })
-
         messages.append({"role": "user", "content": tool_results})
 
     exceptions_after = len(data_store.get_exceptions())
-    notifications_after = len(data_store.get_cs_notifications())
+    notifications_after = len([n for n in data_store.get_cs_notifications() if n.status != "pending_batch"])
 
     return {
         "status": "completed",
@@ -475,42 +503,71 @@ def run_agent_cycle() -> dict:
     }
 
 
-async def generate_shift_summary_text() -> str:
-    """Ask Claude to write a formatted shift summary narrative."""
+async def generate_shift_summary_structured() -> dict:
+    """Ask Claude to return a structured JSON shift briefing."""
     stats = tool_generate_shift_summary()
     exceptions = data_store.get_exceptions()
     notifications = data_store.get_cs_notifications()
 
-    prompt = f"""You are DispatchIQ. Generate a concise end-of-shift operations briefing.
+    open_exc = [e for e in exceptions if e.status == "open"]
+    pending_notifs = [n for n in notifications if n.status == "pending"]
 
-Shift Statistics:
+    prompt = f"""You are DispatchIQ. Generate an end-of-shift briefing as a JSON object.
+
+Current shift data:
 {json.dumps(stats, indent=2)}
 
-Open Exceptions ({len([e for e in exceptions if e.status == 'open'])}):
-{json.dumps([{'type': e.type, 'severity': e.severity, 'description': e.description} for e in exceptions if e.status == 'open'], indent=2)}
+Open exceptions ({len(open_exc)}):
+{json.dumps([{{'type': e.type, 'severity': e.severity, 'description': e.description}} for e in open_exc], indent=2)}
 
-Pending CS Notifications ({len([n for n in notifications if n.status == 'pending'])}):
-{json.dumps([{'order_id': n.order_id, 'issue': n.issue_type} for n in notifications if n.status == 'pending'], indent=2)}
+Pending CS notifications ({len(pending_notifs)}):
+{json.dumps([{{'order_id': n.order_id, 'issue': n.issue_type}} for n in pending_notifs], indent=2)}
 
-Write a structured briefing for the next shift manager. Include:
-- Overall shift performance (orders completed, rate)
-- Issues that were handled
-- Open items that need follow-up
-- Any patterns worth noting
-Keep it tight — ops managers read fast. Use bullet points."""
+Return ONLY valid JSON with this exact structure:
+{{
+  "handoff_status": "clean" | "issues" | "critical",
+  "critical_issues": [
+    {{"title": "short title", "detail": "one sentence detail", "action": "what next shift must do"}}
+  ],
+  "next_priorities": [
+    "Action item 1 — concrete and specific",
+    "Action item 2 — concrete and specific"
+  ],
+  "operational_notes": "1-2 sentences of context for next shift manager"
+}}
+
+critical_issues should only include genuinely urgent items (open high-severity exceptions, unhandled core item CS notifications).
+If nothing critical, return empty array."""
 
     response = client.messages.create(
         model=MODEL,
         max_tokens=1024,
         messages=[{"role": "user", "content": prompt}],
     )
-    return response.content[0].text
+
+    text = response.content[0].text.strip()
+    # Strip markdown code fences if present
+    if text.startswith("```"):
+        text = text.split("```")[1]
+        if text.startswith("json"):
+            text = text[4:]
+    text = text.strip()
+
+    try:
+        return json.loads(text)
+    except Exception:
+        return {
+            "handoff_status": "issues",
+            "critical_issues": [],
+            "next_priorities": ["Review open exceptions", "Clear pending CS notifications"],
+            "operational_notes": text[:500],
+        }
 
 
 # ─── Background monitor ────────────────────────────────────────────────────────
 
 class AgentMonitor:
-    def __init__(self, interval_seconds: int = 45):
+    def __init__(self, interval_seconds: int = 60):
         self.interval = interval_seconds
         self.last_result: dict = {}
         self.running = False
